@@ -1,5 +1,5 @@
 {
-  "url": "http://localhost:5173",
+  "url": "https://ton-wallet-app-nine.vercel.app",
   "name": "TON Maker",
-  "iconUrl": "http://localhost:5173/user/tonLogo.png"
+  "iconUrl": "https://ton-wallet-app-nine.vercel.app/tonLogo.png"
 }
