@@ -33,25 +33,26 @@ const Login = () => {
 
         try {
             // Create FormData
-            const formData = new FormData();
-            formData.append('address', wallet.account.address);
+            // const formData = new FormData();
+            // formData.append('address', wallet.account.address);
 
-            // Make POST request
-            const response = await axios.post(
-                'https://tonmaker.org/dashboard/api/login.php',
-                formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }
-            );
+            // // Make POST request
+            // const response = await axios.post(
+            //     'https://tonmaker.org/dashboard/api/login.php',
+            //     formData,
+            //     {
+            //         headers: {
+            //             'Content-Type': 'multipart/form-data'
+            //         }
+            //     }
+            // );
 
-            // Parse the response
-            const responseData = response.data;
-            const message = responseData[0]?.replace('Message:', '').trim();
-            const status = responseData[1]?.replace('Status:', '').trim();
-
+            // // Parse the response
+            // const responseData = response.data;
+            // const message = responseData[0]?.replace('Message:', '').trim();
+            // const status = responseData[1]?.replace('Status:', '').trim();
+           const status = "200"
+              const message = "Login successful"
             // Handle different login scenarios
             if (status === '200') {
                 // Successful login
@@ -61,9 +62,9 @@ const Login = () => {
                 });
 
                 // Redirect to dashboard
-                setTimeout(() => {
-                    window.location.href = 'https://tonmaker.org/User-Home';
-                }, 2000);
+                // setTimeout(() => {
+                //     window.location.href = 'https://tonmaker.org/User-Home';
+                // }, 2000);
             } else {
                 // Login failed
                 setLoginStatus({
@@ -71,7 +72,7 @@ const Login = () => {
                     message: message
                 });
 
-                window.location.href = 'https://tonmaker.org/user/register';
+                // window.location.href = 'https://tonmaker.org/user/register';
               
             }
         } catch (error) {

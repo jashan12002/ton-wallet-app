@@ -21,25 +21,25 @@ const Register = () => {
 
 
 
-  useEffect(() => {
-    const fetchFeesdata = async () => {
-      const regfees = await axios.get('https://tonmaker.org/dashboard/api/ton_rate.php')
-      const data = regfees.data;
-      console.log(data);
-      setfeesdata(data);
-    }
+  // useEffect(() => {
+  //   const fetchFeesdata = async () => {
+  //     const regfees = await axios.get('https://tonmaker.org/dashboard/api/ton_rate.php')
+  //     const data = regfees.data;
+  //     console.log(data);
+  //     setfeesdata(data);
+  //   }
 
-    fetchFeesdata()
-
-
-  }, [])
+  //   fetchFeesdata()
 
 
+  // }, [])
 
 
 
 
-  const REGISTRATION_FEE = feesdata; // 0.01 TON registration fee
+
+
+  // const REGISTRATION_FEE = feesdata; // 0.01 TON registration fee
 
   const showErrorAlert = (title, text, footer = '') => {
     Swal.fire({
@@ -111,35 +111,35 @@ const Register = () => {
     }
 
     try {
-      // Fetch the current TON price in USD from the backend
-      const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd');
-      const tonPriceInUSD = response.data['the-open-network'].usd;
+      // // Fetch the current TON price in USD from the backend
+      // const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd');
+      // const tonPriceInUSD = response.data['the-open-network'].usd;
 
-      // Convert 0.01 TON to nanotons
-      const amountInNanotons = (REGISTRATION_FEE * 1_000_000_000).toFixed(0);
+      // // Convert 0.01 TON to nanotons
+      // const amountInNanotons = (REGISTRATION_FEE * 1_000_000_000).toFixed(0);
 
-      // Prepare the transaction
-      const transaction = {
-        validUntil: Date.now() + 5 * 60 * 1000, // Transaction valid for 5 minutes
-        messages: [
-          {
-            address: "UQCdgXFuAFM2lkeR82aNWi-bxSQ9BkhSIDiaJgnY9MYCyWu9", // Replace with your actual wallet address
-            amount: amountInNanotons,
-          },
-        ],
-      };
+      // // Prepare the transaction
+      // const transaction = {
+      //   validUntil: Date.now() + 5 * 60 * 1000, // Transaction valid for 5 minutes
+      //   messages: [
+      //     {
+      //       address: "UQCdgXFuAFM2lkeR82aNWi-bxSQ9BkhSIDiaJgnY9MYCyWu9", // Replace with your actual wallet address
+      //       amount: amountInNanotons,
+      //     },
+      //   ],
+      // };
 
-      // Send the transaction via TonConnect
-      const result = await tonConnectUI.sendTransaction(transaction);
+      // // Send the transaction via TonConnect
+      // const result = await tonConnectUI.sendTransaction(transaction);
 
-      setFeeTransactionResult({
-        status: 'success',
-        boc: result.boc,
-        timestamp: new Date().toLocaleString(),
-        amount: REGISTRATION_FEE,
-        tonPrice: tonPriceInUSD,
-        raw: result,
-      });
+      // setFeeTransactionResult({
+      //   status: 'success',
+      //   boc: result.boc,
+      //   timestamp: new Date().toLocaleString(),
+      //   amount: REGISTRATION_FEE,
+      //   tonPrice: tonPriceInUSD,
+      //   raw: result,
+      // });
 
      
       return true;
@@ -187,29 +187,29 @@ const Register = () => {
 
     // Step 1: Validate user registration and referral ID
     try {
-      const formData = new FormData();
-      formData.append('address', wallet.account.address);
-      formData.append('refid', refId);
-      const validationResponse = await axios.post(
-        `https://tonmaker.org/dashboard/api/register1.php?address=${wallet.account.address}&refid=${refId}`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
+      // const formData = new FormData();
+      // formData.append('address', wallet.account.address);
+      // formData.append('refid', refId);
+      // const validationResponse = await axios.post(
+      //   `https://tonmaker.org/dashboard/api/register1.php?address=${wallet.account.address}&refid=${refId}`,
+      //   formData,
+      //   {
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //     },
+      //   }
+      // );
 
-      const responseData = validationResponse.data;
-      const message = responseData[0]?.replace('Message:', '').trim();
-      const status = responseData[1]?.replace('Status:', '').trim();
+      // const responseData = validationResponse.data;
+      // const message = responseData[0]?.replace('Message:', '').trim();
+      // const status = responseData[1]?.replace('Status:', '').trim();
 
-      console.log("Validation Response:", responseData);
+      // console.log("Validation Response:", responseData);
 
-      if (status !== '200') {
-        showErrorAlert("Validation Failed", message, "Please check the referral ID and try again.");
-        return; // Stop further processing
-      }
+      // if (status !== '200') {
+      //   showErrorAlert("Validation Failed", message, "Please check the referral ID and try again.");
+      //   return; // Stop further processing
+      // }
     } catch (error) {
       console.error("Validation API Error:", error);
       showErrorAlert("Network Error", "Unable to validate referral ID. Please try again later.");
@@ -227,20 +227,22 @@ const Register = () => {
     setRegistrationStatus(null);
 
     try {
-      const formData = new FormData();
-      formData.append('address', wallet.account.address);
-      formData.append('refid', refId);
+      // const formData = new FormData();
+      // formData.append('address', wallet.account.address);
+      // formData.append('refid', refId);
 
-      const response = await axios.post(
-        'https://tonmaker.org/dashboard/api/register.php',
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
+      // const response = await axios.post(
+      //   'https://tonmaker.org/dashboard/api/register.php',
+      //   formData,
+      //   { headers: { 'Content-Type': 'multipart/form-data' } }
+      // );
 
-      const responseData = response.data;
-      const message = responseData[0]?.replace('Message:', '').trim();
-      const status = responseData[1]?.replace('Status:', '').trim();
-
+      // const responseData = response.data;
+      // const message = responseData[0]?.replace('Message:', '').trim();
+      // const status = responseData[1]?.replace('Status:', '').trim();
+      const status = "200"
+      const message = "Registration successful"
+      // Handle registration response
       if (status === '200') {
         setRegistrationStatus({
           type: 'success',
@@ -253,7 +255,7 @@ const Register = () => {
           `Referral ID: ${refId}`
         );
 
-        window.location.href = 'https://tonmaker.org/User-Home';
+        // window.location.href = 'https://tonmaker.org/User-Home';
       } else {
         setRegistrationStatus({
           type: 'error',

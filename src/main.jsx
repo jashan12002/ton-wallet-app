@@ -11,7 +11,7 @@ import Withdraw from './components/Withdraw.jsx';
 
 
 createRoot(document.getElementById('root')).render(
- <TonConnectUIProvider manifestUrl={`${window.location.origin}/manifest.json`}>
+ <TonConnectUIProvider manifestUrl={`https://ton-wallet-app-nine.vercel.app/manifest.json`}>
 
 
       <Router>
